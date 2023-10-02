@@ -1,6 +1,5 @@
 package vehiculos;
 
-
 import java.util.List;
 
 import java.util.ArrayList;
@@ -10,12 +9,11 @@ public class Pais {
 	private String nombre;
 	private int cantidadVehiculos;
 	private static List<Pais> paises = new ArrayList<Pais>();
+	int count;
 	
 	public Pais(String nombre) {
-		
 		this.nombre = nombre;
-		
-		Pais.paises.add(this);
+		paises.add(this);
 		
 	}
 
@@ -43,26 +41,14 @@ public class Pais {
 		Pais.paises = paises;
 	}
 	
-    public static Pais paisMasVendedor() {
-		
-		int max = 0;
-		Pais vaa = null;
-		
-		for (int i = 0; i<Pais.paises.size(); i++){
-			
-			int x = Pais.paises.get(i).cantidadVehiculos;
-			
-			if (max < x) {
-				
-				max = x;
-				vaa = Pais.paises.get(i);
-	
+	public static Pais paisMasVendedor() {
+		Pais ven = paises.get(0);
+		for(int i=1; i < paises.size(); i++) {
+			if(ven.count < paises.get(i).count) {
+				ven = paises.get(i);
 			}
-			
 		}
-		
-		return vaa;
-		
+		return ven;
 	}
 
 }

@@ -10,13 +10,13 @@ public class Fabricante {
 	private Pais pais;
 	private int cantidadVehiculos;
 	private static List<Fabricante> fabricantes = new ArrayList<Fabricante>();
+	int count;
 	
 	public Fabricante(String nombre, Pais pais) {
 		
 		this.nombre = nombre;
 		this.pais = pais;
-		
-		Fabricante.fabricantes.add(this);
+		fabricantes.add(this);
 		
 	}
 
@@ -53,25 +53,13 @@ public class Fabricante {
 	}
 	
 	public static Fabricante fabricaMayorVentas() {
-		
-		int max = 0;
-		Fabricante muu = null;
-		
-		for (int i = 0; i<Fabricante.fabricantes.size(); i++){
-			
-			int x = Fabricante.fabricantes.get(i).cantidadVehiculos;
-			
-			if (max < x) {
-				
-				max = x;
-				muu = Fabricante.fabricantes.get(i);
-	
+		Fabricante ven = fabricantes.get(0);
+		for(int i=1; i < fabricantes.size(); i++) {
+			if(ven.count < fabricantes.get(i).count) {
+				ven = fabricantes.get(i);
 			}
-			
 		}
-		
-		return muu;
-		
+		return ven;
 	}
 
 }
